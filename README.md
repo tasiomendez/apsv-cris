@@ -43,32 +43,7 @@ Además de estas funcionalidades básicas, el sistema cuenta con algunas funcion
 
 ## Despliegue
 
-El sistema está desarrollado para su despliegue en la nube, en la plataforma de [Google Cloud Platform](https://console.cloud.google.com) utilizando App Engine para desplegar la aplicación web de servidor, Datastore para el servicio de almacenamiento y PubSub para el servicio de colas.
-
-### Funcionalidades añadidas
-
-Esta plataforma permite utilizar el sistema de autenticación y manejo de usuarios de Google (asociado a cuentas de gmail) que se ha incorporado al sistema CRIS. 
-
-Otra funcionalidad que se ha incluido a la plataforma es el uso de correo electrónico, tanto envío como recepción. Los investigadores tienen la oportunidad de crear nuevas publicaciones en su perfil enviando un correo al sistema con los datos que deben añadirse. Además, se proporciona un método para enviar el Curriculum Vitae que genera el sistema.
-
-En resumen, el despliegue en Google Cloud Platform implementa la siguiente funcionalidades adicionales a las ya implementadas.
-- Autenticación mediante Google para entrar en el sistema.
-- Creación de publicaciones por correo electrónico.
-- Envío del Curriculum Vitae por correo electrónico.
-
-> En la rama _simply_ se proporciona un sistema simplificado para su utilización en local sin las funcionalidades que permiten el despliegue en Google Cloud Platform. Esta aplicación utiliza la base de datos H2.
-
-### Configuración
-
-Para la configuración del despliegue es **necesario** incluir en la carpeta `resources` dos archivos para la interconexión con la API de Scopus y con Google.
-
-- `credentials.json`. Archivo de credenciales del proyecto creado en Google que como mínimo debe incluir el nombre del proyecto creado.
-
-  ```json
-  {
-	  "project_id": "[NOMBRE_DEL_PROYECTO]",
-  }
-  ```
+El sistema está desarrollado para su despliegue en local, utilizando la base da datos de H2. Para la interconexión con la API de Scopus es necesario incorporar en la carpeta `resources` el siguiente archivo siguiendo la misma estructura.
 
 - `elsevier.json`. Archivo de credenciales para la interconexión con la API de Scopus. Este archivo debe incluir lo siguiente.
 
@@ -81,5 +56,3 @@ Para la configuración del despliegue es **necesario** incluir en la carpeta `re
 	  ]
   }
   ```
-
-Una vez creados ambos archivos, ya se puede desplegar el sistema en Google Cloud Platform utilizando App Engine. Para ello, habrá que crear una nueva aplicación con lenguaje de programación java y entorno estándar.
