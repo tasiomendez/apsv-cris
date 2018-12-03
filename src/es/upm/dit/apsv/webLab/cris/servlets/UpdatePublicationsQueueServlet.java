@@ -75,14 +75,15 @@ public class UpdatePublicationsQueueServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			String publicationId = Long.toString((Long) jsonPublication.get("id"));
 			// If publication exists or first author do not match continue
-			if (pdao.read((String) jsonPublication.get("id")) != null ||
-					!jsonPublication.get("firstAuthor").equals(researcher.getId()))
+			if (pdao.read(publicationId) != null ||
+					!Long.toString((Long) jsonPublication.get("firstAuthor")).equals(researcher.getId()))
 				continue;
 			
 			// Else build and save new publication
 			Publication publication = new Publication();
-			publication.setId((String) jsonPublication.get("id"));
+			publication.setId(publicationId);
 			publication.setTitle((String) jsonPublication.get("tilte")); // Bug in pub/sub file
 			publication.setEid((String) jsonPublication.get("eid"));
 			publication.setPublicationName((String) jsonPublication.get("publicationName"));
